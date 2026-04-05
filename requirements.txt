@@ -1,0 +1,6 @@
+flask
+nltk
+spacy
+scikit-learn
+pypdf2
+python-docx

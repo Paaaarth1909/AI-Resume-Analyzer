@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Resume Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>AI Resume Analyzer</h1>
+
+    <form method="POST" enctype="multipart/form-data" class="card">
+        <input type="file" name="resume" required>
+        <textarea name="job_desc" placeholder="Enter Job Description" required></textarea>
+        <button type="submit">Analyze Resume</button>
+    </form>
+
+    {% if score %}
+    <div class="result-card">
+        <h2>Match Score: {{score}}%</h2>
+
+        <div class="progress">
+            <div class="progress-bar" style="width: {{score}}%"></div>
+        </div>
+
+        <h3>Skills Found:</h3>
+        <ul>
+            {% for skill in skills %}
+                <li>{{skill}}</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Missing Skills:</h3>
+        <ul>
+            {% for skill in missing_skills %}
+                <li>{{skill}}</li>
+            {% endfor %}
+        </ul>
+
+        <h3>AI Suggestions:</h3>
+        <ul>
+            {% for s in suggestions %}
+                <li>{{s}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
